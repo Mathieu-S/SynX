@@ -11,13 +11,70 @@
 </head>
 
 <body>
-    <section class="container">
-        <img th:src="@{/img/logo.png}" alt="logo de l'application"/>
-        <form action="#" th:action="@{/seedstartermng}" th:object="${seedStarter}" method="post">
-            <input type="text" name="login" placeholder="Login"/>
-            <input type="password" name="pass" placeholder="Mot de passe"/>
-            <button type="submit">Se connecter</button>
-        </form>
-    </section>
+<header>
+    <h1 class="titre">Tableau de suivi des pannes</h1>
+</header>
+
+<section class="row">
+    <nav class="two columns">
+        <a href="ajout_panne.php">
+            <button class="u-full-width button-menu">Déclarer un Incident</button>
+        </a>
+        <a href="gestion_utilisateur.php">
+            <button class="u-full-width button-menu">Gérer les Utilisateurs</button>
+        </a>
+        <a href="gestion_materiel.php">
+            <button class="u-full-width button-menu">Gestion du Matériel</button>
+        </a>
+        <a th:href="logout">
+            <button class="u-full-width button-menu">Déconnexion</button>
+        </a>
+    </nav>
+
+    <div class="ten columns">
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>N° incident</th>
+                    <th>Numero Poste</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Date d'incident</th>
+                    <th>Date de résolution</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="incident : ${incidents}">
+                    <td th:text="${incident.id}"></td>
+                    <td th:text="${incident.idMateriel}"></td>
+                    <td th:text="${incident.titre}"></td>
+                    <td th:text="${incident.description}"></td>
+                    <td th:text="${incident.status}"></td>
+                    <td th:text="${incident.dateDebut}"></td>
+                    <td th:text="${incident.dateFin}"></td>
+                    <td>
+                        <a class="button" href="">Modifier Status</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<article class="popup">
+    <h2>Modifier le status</h2>
+    <form method="post">
+        <select name="status">
+            <option value="EC">En cours</option>
+            <option value="R">Résolut</option>
+            <option value="HS">Hors Service</option>
+        </select>
+        <input type="hidden" name="ticket" id="ticket" value="" />
+        <button class="button-primary mrg-l" type="submit">Valider</button>
+    </form>
+</article>
 </body>
 </html>

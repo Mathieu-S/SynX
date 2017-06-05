@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<section class="container">
+    <img th:src="@{/img/logo.png}" alt="logo de l'application"/>
+    <form method="post">
+        <input type="email" name="email" placeholder="Email"/>
+        <input type="password" name="pswd" placeholder="Mot de passe"/>
+        <button type="submit">Se connecter</button>
+    </form>
+</section>
+</body>
+</html>
