@@ -1,9 +1,7 @@
 package com.synx.service;
 
 import com.synx.dao.IncidentRepository;
-import com.synx.dao.UserRepository;
 import com.synx.model.Incident;
-import com.synx.model.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

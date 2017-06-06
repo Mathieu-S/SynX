@@ -1,10 +1,11 @@
 package com.synx.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(name="t_incidents")
-public class Incident {
+public class Incident implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
