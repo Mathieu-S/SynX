@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<header>
+    <a th:href="@{/}">
+        <img th:src="@{/img/home.png}" alt="icon home" />
+    </a>
+    <h1 class="titre">Gestion du Matériel</h1>
+</header>
+
+<div class="row">
+    <section class="seven columns">
+        <h3>Liste du Matériel</h3>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>N° Poste</th>
+                    <th>N° Série</th>
+                    <th>Type d'Appareil</th>
+                    <th>Apartien à</th>
+                    <th>Modifier/Suprimer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="materiel : ${materiels}">
+                    <td th:text="${materiel.id}"></td>
+                    <td th:text="${materiel.nbSerie}"></td>
+                    <td th:text="${materiel.type}"></td>
+                    <td th:text="${materiel.idUser}"></td>
+                    <td>
+                        <a href=""><button> Modifier</button></a>&nbsp;
+                        <a href=""><button class='delete'>&nbsp;</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="five columns">
+        <h3>Ajouter un Appareil</h3>
+        <form th:action="@{/addMateriel}" method="post">
+            <label>Veuillez saisir les données du matériel dans le formulaire ci-dessous :</label>
+            <aside class="row">
+                <div class="four columns">
+                    <label class="description" for="nbSerie">N° Série</label>
+                    <input id="nbSerie" name="nbSerie" class="u-full-width" type="text" maxlength="20" />
+                </div>
+
+                <div class="four columns">
+                    <label class="description" for="idUser">Apartien à</label>
+                    <select th:each="user : ${users}" class="u-full-width" name="idUser" id="idUser">
+                        <option th:value="${user.id}" th:text="${user.nom + ' - ' + user.prenom}"></option>
+                    </select>
+                </div>
+
+                <div class="four columns">
+                    <label class="description" for="type">Type d'Appareil</label>
+                    <select class="u-full-width" name="type" id="type">
+                        <option value="Desktop">Desktop</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Smartphone">Smartphone</option>
+                    </select>
+                </div>
+            </aside>
+            <button class="button-primary button-ajout-user" type="submit">Valider</button>
+        </form>
+    </section>
+</div>
+</body>
+
+</html>

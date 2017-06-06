@@ -15,13 +15,15 @@ public class Materiel implements Serializable {
     private int id;
     private int idUser;
     private String type;
+    private String nbSerie;
 
     public Materiel() {
     }
 
-    public Materiel(int idUser, String type) {
-        this.idUser = idUser;
+    public Materiel(String idUser, String type, String nbSerie) {
+        this.idUser = Integer.parseInt(idUser);
         this.type = type;
+        this.nbSerie = nbSerie;
     }
 
     public int getId() {
@@ -48,12 +50,21 @@ public class Materiel implements Serializable {
         this.type = type;
     }
 
+    public String getNbSerie() {
+        return nbSerie;
+    }
+
+    public void setNbSerie(String nbSerie) {
+        this.nbSerie = nbSerie;
+    }
+
     @Override
     public String toString() {
         return "Materiel{" +
                 "id=" + id +
                 ", idUser=" + idUser +
                 ", type='" + type + '\'' +
+                ", nbSerie='" + nbSerie + '\'' +
                 '}';
     }
 }
