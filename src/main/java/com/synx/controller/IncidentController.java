@@ -37,7 +37,7 @@ public class IncidentController {
             return "redirect:/login";
         }
         model.addAttribute("materiels", materielService.findAll());
-        return "addIncident";
+        return "add_incident";
     }
 
     @RequestMapping(value = "/addIncident", method = RequestMethod.POST)
