@@ -43,7 +43,7 @@ section {
 .delete {
     background-color: #e74c3c;
     border-color: #e74c3c;
-    background-image: url(images/cancel.png);
+    background-image: url(../img/cancel.png);
     background-size: 30%;
     background-position: center;
     background-repeat: no-repeat;
