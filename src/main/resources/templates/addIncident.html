@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<header>
+    <a th:href="@{/}">
+        <img th:src="@{/img/home.png}" alt="icon home" />
+    </a>
+    <h1 class="titre">Ajout panne</h1>
+</header>
+
+<section>
+    <form method="post">
+        <div class="row">
+            <div class="four columns">
+                <label for="titreIncient">Titre incient</label>
+                <input class="u-full-width" id="titreIncient" name="titreIncient" type="text" maxlength="255" value="" />
+            </div>
+
+            <div class="two columns">
+                <label for="idMateriel">Id materiel</label>
+                <select th:each="materiel : ${materiels}" name="idMateriel" class="u-full-width" id="idMateriel">
+                    <option th:value="${materiel.id}" th:text="${materiel.id}"></option>
+                </select>
+            </div>
+        </div>
+        <label for="descIncident">Description de la panne</label>
+        <textarea class="u-full-width" id="descIncident" name="descIncident" value="descIncident"></textarea>
+        <button class="button-primary" type="submit">Envoyer</button>
+    </form>
+</section>
+</body>
+</html>

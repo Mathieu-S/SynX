@@ -33,6 +33,14 @@ public class Incident implements Serializable {
         this.status = status;
     }
 
+    public Incident(String idMateriel, String titre, String description, Date dateDebut, String status) {
+        this.idMateriel = Integer.parseInt(idMateriel);
+        this.titre = titre;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

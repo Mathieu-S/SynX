@@ -17,7 +17,7 @@
 
 <section class="row">
     <nav class="two columns">
-        <a href="ajout_panne.php">
+        <a th:href="@{/addIncident}">
             <button class="u-full-width button-menu">Déclarer un Incident</button>
         </a>
         <a href="gestion_utilisateur.php">
@@ -26,7 +26,7 @@
         <a href="gestion_materiel.php">
             <button class="u-full-width button-menu">Gestion du Matériel</button>
         </a>
-        <a th:href="logout">
+        <a th:href="@{/logout}">
             <button class="u-full-width button-menu">Déconnexion</button>
         </a>
     </nav>
@@ -54,7 +54,7 @@
                     <td th:text="${incident.description}"></td>
                     <td th:text="${incident.status}"></td>
                     <td th:text="${incident.dateDebut}"></td>
-                    <td th:text="${incident.dateFin}"></td>
+                    <td th:text="${incident.dateFin}">N/A</td>
                     <td>
                         <a class="button" href="">Modifier Status</a>
                     </td>
