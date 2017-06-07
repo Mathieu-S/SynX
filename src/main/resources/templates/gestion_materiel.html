@@ -59,8 +59,10 @@
 
                 <div class="four columns">
                     <label class="description" for="idUser">Apartien à</label>
-                    <select th:each="user : ${users}" class="u-full-width" name="idUser" id="idUser">
-                        <option th:value="${user.id}" th:text="${user.nom + ' - ' + user.prenom}"></option>
+                    <select class="u-full-width" name="idUser" id="idUser">
+                        <option th:each="user : ${users}"
+                                th:value="${user.id}"
+                                th:text="${user.nom + ' - ' + user.prenom}"></option>
                     </select>
                 </div>
 

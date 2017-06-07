@@ -28,8 +28,10 @@
 
             <div class="two columns">
                 <label for="idMateriel">Id materiel</label>
-                <select th:each="materiel : ${materiels}" name="idMateriel" class="u-full-width" id="idMateriel">
-                    <option th:value="${materiel.id}" th:text="${materiel.id}"></option>
+                <select name="idMateriel" class="u-full-width" id="idMateriel">
+                    <option th:each="materiel : ${materiels}"
+                            th:value="${materiel.id}"
+                            th:text="${materiel.type + ' - ' + materiel.nbSerie}"></option>
                 </select>
             </div>
         </div>
