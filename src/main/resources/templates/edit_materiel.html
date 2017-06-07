@@ -23,9 +23,8 @@
     <form method="post">
         <label>Veuillez saisir vos données dans le formulaire ci-dessous :</label>
         <br/>
+        <input name="id" type="hidden" th:value="${materiel.id}" required="required"/>
         <aside class="row">
-            <input name="id" type="hidden" th:value="${materiel.id}" required="required"/>
-
             <div class="five columns">
                 <label class="description" for="nbSerie">N° Série</label>
                 <input id="nbSerie" class="u-full-width" name="nbSerie" type="text" maxlength="20" th:value="${materiel.nbSerie}" required="required"/>
@@ -41,7 +40,7 @@
                 </select>
             </div>
 
-            <div class="three columns">
+            <div class="four columns">
                 <label class="description" for="idUser">Apartien à</label>
                 <select class="u-full-width" name="idUser" id="idUser">
                     <option th:each="user : ${users}"
