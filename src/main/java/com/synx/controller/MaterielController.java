@@ -31,7 +31,7 @@ public class MaterielController {
     }
 
     @RequestMapping(value = "/addMateriel", method = RequestMethod.POST)
-    public String addMateriel(HttpServletRequest request, Model model) {
+    public String addMateriel(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
@@ -45,7 +45,7 @@ public class MaterielController {
     }
 
     @RequestMapping(value = "/deleteMateriel", method = RequestMethod.GET)
-    public String deleteMateriel(HttpServletRequest request, Model model) {
+    public String deleteMateriel(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
