@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<header>
+    <a th:href="@{/}">
+        <img th:src="@{/img/home.png}" alt="icon home" />
+    </a>
+    <h1 class="titre">Gestion des Utilisateurs</h1>
+</header>
+
+<section class="container">
+    <h3>Modifier un Utilisateur</h3>
+    <form method="post">
+        <label>Veuillez modifier les données dans le formulaire ci-dessous :</label>
+        <br/>
+        <input name="id" type="hidden" th:value="${user.id}" required="required"/>
+        <aside class="row">
+            <div class="four columns">
+                <label for="nom">Nom</label>
+                <input id="nom" name="nom" class="u-full-width" type="text" maxlength="50" th:value="${user.nom}" required="required"/>
+            </div>
+
+            <div class="four columns">
+                <label for="prenom">Login</label>
+                <input id="prenom" name="prenom" class="u-full-width" type="text" maxlength="50" th:value="${user.prenom}" required="required"/>
+            </div>
+
+            <div class="four columns">
+                <label for="email">Email</label>
+                <input id="email" name="email" class="u-full-width" type="email" maxlength="100" th:value="${user.email}" required="required"/>
+            </div>
+        </aside>
+
+        <aside class="row">
+            <div class="six columns">
+                <label for="mdp">Mot de passe</label>
+                <input id="mdp" name="mdp" class="u-full-width" type="password" maxlength="255" value="null" required="required"/>
+            </div>
+
+            <div class="six columns">
+                <label class="description" for="role">Type d'utilisateur</label>
+                <select id="role" class="u-full-width" name="role">
+                    <option value="User">Utilisateur</option>
+                    <option value="Admin">Administrateur</option>
+                </select>
+            </div>
+        </aside>
+        <button class="button-primary button-ajout-user" type="submit">Valider</button>
+    </form>
+    <a class="fix_link" th:href="@{/gestionUtilisateur}"><button class="btn_annuler">Annuler</button></a>
+</section>
+</body>
+
+</html>

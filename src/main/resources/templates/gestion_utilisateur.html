@@ -41,7 +41,7 @@
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
-                        <a href=""><button> Modifier</button></a>&nbsp;
+                        <a th:href="@{/editUser(id=${user.id})}"><button> Modifier</button></a>&nbsp;
                         <a th:href="@{/deleteUser(id=${user.id})}"><button class='delete'>&nbsp;</button></a>
                     </td>
                 </tr>
@@ -58,10 +58,12 @@
                     <label for="nom">Nom</label>
                     <input id="nom" name="nom" class="u-full-width" type="text" maxlength="50" required="required"/>
                 </div>
+
                 <div class="four columns">
-                    <label for="prenom">Login</label>
+                    <label for="prenom">Prenom</label>
                     <input id="prenom" name="prenom" class="u-full-width" type="text" maxlength="50" required="required"/>
                 </div>
+
                 <div class="four columns">
                     <label for="email">Email</label>
                     <input id="email" name="email" class="u-full-width" type="email" maxlength="100" required="required"/>
