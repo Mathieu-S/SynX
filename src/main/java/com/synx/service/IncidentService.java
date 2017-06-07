@@ -26,7 +26,7 @@ public class IncidentService {
         return incidents;
     }
 
-    public Incident findUser(int id) {
+    public Incident findIncident(int id) {
         return incidentRepository.findOne(id);
     }
 

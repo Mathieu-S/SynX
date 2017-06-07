@@ -33,6 +33,26 @@ public class IncidentController {
         return "index";
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String editIncident(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        if (request.getParameter("idIncident") == null){
+            return "redirect:/";
+        }
+
+        Incident incident = incidentService.findIncident(Integer.parseInt(request.getParameter("idIncident")));
+        incident.setStatus(request.getParameter("status"));
+        if (!request.getParameter("status").equals("En cours")) {
+            incident.setDateFin(new Date());
+        }
+
+        incidentService.save(incident);
+
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/addIncident", method = RequestMethod.GET)
     public String addIncidentView(HttpServletRequest request, Model model) {
         if (request.getSession().getAttribute("user") == null) {
@@ -61,4 +81,5 @@ public class IncidentController {
 
         return "redirect:/";
     }
+
 }
