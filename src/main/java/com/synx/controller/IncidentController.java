@@ -27,7 +27,9 @@ public class IncidentController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+
         model.addAttribute("incidents", incidentService.findAll());
+
         return "index";
     }
 
@@ -36,7 +38,9 @@ public class IncidentController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+
         model.addAttribute("materiels", materielService.findAll());
+
         return "add_incident";
     }
 
@@ -45,6 +49,7 @@ public class IncidentController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+
         Incident incident = new Incident(
                 request.getParameter("idMateriel"),
                 request.getParameter("titreIncient"),
@@ -53,6 +58,7 @@ public class IncidentController {
                 "Non traité"
                 );
         incidentService.save(incident);
+
         return "redirect:/";
     }
 }
