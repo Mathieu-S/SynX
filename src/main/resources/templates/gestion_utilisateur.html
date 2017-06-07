@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<header>
+    <a th:href="@{/}">
+        <img th:src="@{/img/home.png}" alt="icon home" />
+    </a>
+    <h1 class="titre">Gestion des Utilisateurs</h1>
+</header>
+
+<div class="row">
+    <section class="six columns">
+        <h3>Liste des utilisateurs</h3>
+        <table class="u-full-width">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Droit</th>
+                    <th>Modifier/Suprimer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.nom}"></td>
+                    <td th:text="${user.prenom}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td>
+                        <a href=""><button> Modifier</button></a>&nbsp;
+                        <a href=""><button class='delete'>&nbsp;</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="six columns">
+        <h3>Ajouter un utilisateur</h3>
+        <form th:action="@{/addUser}" method="post">
+            <label>Veuillez saisir vos données dans le formulaire ci-dessous :</label>
+            <aside class="row">
+                <div class="four columns">
+                    <label for="nom">Nom</label>
+                    <input id="nom" name="nom" class="u-full-width" type="text" maxlength="50" required="required"/>
+                </div>
+                <div class="four columns">
+                    <label for="prenom">Login</label>
+                    <input id="prenom" name="prenom" class="u-full-width" type="text" maxlength="50" required="required"/>
+                </div>
+                <div class="four columns">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" class="u-full-width" type="email" maxlength="100" required="required"/>
+                </div>
+            </aside>
+
+            <aside class="row">
+                <div class="six columns">
+                    <label for="mdp">Mot de passe</label>
+                    <input id="mdp" name="mdp" class="u-full-width" type="password" maxlength="255" required="required"/>
+                </div>
+                <div class="six columns">
+                    <label class="description" for="role">Type d'utilisateur</label>
+                    <select id="role" class="u-full-width" name="role">
+                        <option value="User">Utilisateur</option>
+                        <option value="Admin">Administrateur</option>
+                    </select>
+                </div>
+            </aside>
+            <button class="button-primary button-ajout-user" type="submit">Valider</button>
+        </form>
+    </section>
+</div>
+</body>
+
+</html>

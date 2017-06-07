@@ -17,18 +17,18 @@ public class User implements Serializable {
     private String prenom;
     private String email;
     private String mdp;
-    private boolean isAdmin;
+    private String role;
 
     public User() {
     }
 
-    public User(String nom, String prenom, String email, String mdp, boolean isAdmin) {
+    public User(String nom, String prenom, String email, String mdp, String role) {
         super();
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 
     public int getId() {
@@ -71,12 +71,12 @@ public class User implements Serializable {
         this.mdp = mdp;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public String getRole() {
+        return role;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class User implements Serializable {
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
                 ", mdp='" + mdp + '\'' +
-                ", isAdmin=" + isAdmin +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
