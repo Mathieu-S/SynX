@@ -21,6 +21,10 @@ public class UserController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
+            return "redirect:/";
+        }
 
         model.addAttribute("users", userService.findAll());
 
@@ -31,6 +35,10 @@ public class UserController {
     public String addUser(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
+        }
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
+            return "redirect:/";
         }
 
         User user = new User(
@@ -47,10 +55,14 @@ public class UserController {
 
     @RequestMapping(value = "/editUser", method = RequestMethod.GET)
     public String editUserView(HttpServletRequest request, Model model) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 
@@ -64,10 +76,14 @@ public class UserController {
 
     @RequestMapping(value = "/editUser", method = RequestMethod.POST)
     public String editMateriel(HttpServletRequest request) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 
@@ -86,10 +102,14 @@ public class UserController {
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
     public String deleteUser(HttpServletRequest request) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 

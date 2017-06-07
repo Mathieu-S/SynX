@@ -20,12 +20,15 @@
         <a th:href="@{/addIncident}">
             <button class="u-full-width button-menu">Déclarer un Incident</button>
         </a>
-        <a th:href="@{/gestionUtilisateur}">
+
+        <a th:if="${session.user.role == 'Admin'}" th:href="@{/gestionUtilisateur}">
             <button class="u-full-width button-menu">Gérer les Utilisateurs</button>
         </a>
-        <a th:href="@{/gestionMateriel}">
+
+        <a th:if="${session.user.role == 'Admin'}" th:href="@{/gestionMateriel}">
             <button class="u-full-width button-menu">Gestion du Matériel</button>
         </a>
+
         <a th:href="@{/logout}">
             <button class="u-full-width button-menu">Déconnexion</button>
         </a>
@@ -42,7 +45,7 @@
                     <th>Status</th>
                     <th>Date d'incident</th>
                     <th>Date de résolution</th>
-                    <th>Option</th>
+                    <th th:if="${session.user.role == 'Admin'}">Option</th>
                 </tr>
             </thead>
 
@@ -55,8 +58,8 @@
                     <td th:text="${incident.status}"></td>
                     <td th:text="${incident.dateDebut}"></td>
                     <td th:text="${incident.dateFin}">N/A</td>
-                    <td>
-                        <button th:onclick="${'selectTicket('+ incident.id +')'}" data-js="open">Modifier Status</button>
+                    <td th:if="${session.user.role == 'Admin'}">
+                        <button th:if="${incident.status != 'Résolut'}" th:onclick="${'selectTicket('+ incident.id +')'}" data-js="open">Modifier Status</button>
                     </td>
                 </tr>
             </tbody>

@@ -1,6 +1,7 @@
 package com.synx.controller;
 
 import com.synx.model.Materiel;
+import com.synx.model.User;
 import com.synx.service.MaterielService;
 import com.synx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class MaterielController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
+            return "redirect:/";
+        }
 
         model.addAttribute("materiels", materielService.findAll());
         model.addAttribute("users", userService.findAll());
@@ -36,6 +41,10 @@ public class MaterielController {
     public String addMateriel(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
+        }
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
+            return "redirect:/";
         }
 
         Materiel materiel = new Materiel(
@@ -50,10 +59,14 @@ public class MaterielController {
 
     @RequestMapping(value = "/editMateriel", method = RequestMethod.GET)
     public String editMaterielView(HttpServletRequest request, Model model) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 
@@ -68,10 +81,14 @@ public class MaterielController {
 
     @RequestMapping(value = "/editMateriel", method = RequestMethod.POST)
     public String editMateriel(HttpServletRequest request) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 
@@ -86,10 +103,14 @@ public class MaterielController {
 
     @RequestMapping(value = "/deleteMateriel", method = RequestMethod.GET)
     public String deleteMateriel(HttpServletRequest request) {
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
-        if (request.getParameter("id") == null){
+        User connectedUser = (User) request.getSession().getAttribute("user");
+        if (connectedUser.getRole().equals("User")) {
             return "redirect:/";
         }
 
