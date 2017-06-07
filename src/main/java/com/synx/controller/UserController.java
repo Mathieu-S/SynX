@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(HttpServletRequest request, Model model) {
+    public String addUser(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
@@ -38,6 +38,18 @@ public class UserController {
                 request.getParameter("role")
         );
         userService.save(user);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public String deleteUser(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
+        userService.delete(Integer.parseInt(request.getParameter("id")));
         return "redirect:/";
     }
 }

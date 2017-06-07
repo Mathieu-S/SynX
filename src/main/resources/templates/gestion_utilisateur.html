@@ -42,7 +42,7 @@
                     <td th:text="${user.role}"></td>
                     <td>
                         <a href=""><button> Modifier</button></a>&nbsp;
-                        <a href=""><button class='delete'>&nbsp;</button></a>
+                        <a th:href="@{/deleteUser(id=${user.id})}"><button class='delete'>&nbsp;</button></a>
                     </td>
                 </tr>
             </tbody>
