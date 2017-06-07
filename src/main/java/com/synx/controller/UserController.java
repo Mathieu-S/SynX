@@ -38,7 +38,7 @@ public class UserController {
                 request.getParameter("role")
         );
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/gestionUtilisateur";
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
@@ -50,6 +50,6 @@ public class UserController {
             return "redirect:/";
         }
         userService.delete(Integer.parseInt(request.getParameter("id")));
-        return "redirect:/";
+        return "redirect:/gestionUtilisateur";
     }
 }
