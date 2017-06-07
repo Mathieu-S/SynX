@@ -2,6 +2,7 @@ package com.synx.controller;
 
 import com.synx.model.User;
 import com.synx.service.UserService;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,11 +42,12 @@ public class UserController {
             return "redirect:/";
         }
 
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
         User user = new User(
                 request.getParameter("nom"),
                 request.getParameter("prenom"),
                 request.getParameter("email"),
-                request.getParameter("mdp"),
+                passwordEncryptor.encryptPassword(request.getParameter("mdp")),
                 request.getParameter("role")
         );
         userService.save(user);
