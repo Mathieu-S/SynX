@@ -95,7 +95,8 @@ public class UserController {
         user.setEmail(request.getParameter("email"));
         user.setRole(request.getParameter("role"));
         if (!request.getParameter("mdp").equals("null")) {
-            user.setMdp(request.getParameter("mdp"));
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+            user.setMdp(passwordEncryptor.encryptPassword(request.getParameter("mdp")));
         }
         userService.save(user);
 
