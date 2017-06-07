@@ -43,4 +43,16 @@ public class MaterielController {
         materielService.save(materiel);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/deleteMateriel", method = RequestMethod.GET)
+    public String deleteMateriel(HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
+        materielService.delete(Integer.parseInt(request.getParameter("id")));
+        return "redirect:/";
+    }
 }
