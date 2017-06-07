@@ -65,7 +65,7 @@ public class IncidentController {
     }
 
     @RequestMapping(value = "/addIncident", method = RequestMethod.POST)
-    public String addIncident(HttpServletRequest request, Model model) {
+    public String addIncident(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }

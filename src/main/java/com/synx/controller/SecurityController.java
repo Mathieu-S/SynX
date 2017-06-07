@@ -19,18 +19,18 @@ public class SecurityController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(HttpServletRequest request, Model model) {
+    public String login() {
         return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request, Model model) {
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkLogin(HttpServletRequest request, Model model) {
+    public String checkLogin(HttpServletRequest request) {
         List<User> users = userService.findAll();
         for (User user : users) {
             if (user.getEmail().equals(request.getParameter("email"))) {
