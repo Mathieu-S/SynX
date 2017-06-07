@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>SynX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/skeleton.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/master.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="//fonts.googleapis.com/css?family=Raleway:400,300,600"/>
+</head>
+
+<body>
+<header>
+    <a th:href="@{/}">
+        <img th:src="@{/img/home.png}" alt="icon home" />
+    </a>
+    <h1 class="titre">Gestion du Matériel</h1>
+</header>
+
+<section class="container">
+    <h3>Modifier un Appareil</h3>
+    <form method="post">
+        <label>Veuillez saisir vos données dans le formulaire ci-dessous :</label>
+        <br/>
+        <aside class="row">
+
+            <input name="id" type="hidden" th:value="${materiel.id}" required="required"/>
+
+            <div class="five columns">
+                <label class="description" for="nbSerie">N° Série</label>
+                <input id="nbSerie" class="u-full-width" name="nbSerie" type="text" maxlength="20" th:value="${materiel.nbSerie}" required="required"/>
+            </div>
+
+            <div class="three columns">
+                <label class="description" for="type">Type d'Appareil</label>
+                <select class="u-full-width" name="type" id="type">
+                    <option value="Desktop">Desktop</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Smartphone">Smartphone</option>
+                </select>
+            </div>
+
+            <div class="three columns">
+                <label class="description" for="idUser">Apartien à</label>
+                <select class="u-full-width" name="idUser" id="idUser">
+                    <option th:each="user : ${users}"
+                            th:value="${user.id}"
+                            th:text="${user.nom + ' - ' + user.prenom}"></option>
+                </select>
+            </div>
+        </aside>
+        <button class="button-primary button-ajout-user" type="submit">Valider</button>
+    </form>
+    <a class="fix_link" th:href="@{/gestionMateriel}"><button class="btn_annuler">Annuler</button></a>
+</section>
+</body>
+
+</html>

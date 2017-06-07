@@ -25,8 +25,10 @@ public class MaterielController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+
         model.addAttribute("materiels", materielService.findAll());
         model.addAttribute("users", userService.findAll());
+
         return "gestion_materiel";
     }
 
@@ -35,13 +37,51 @@ public class MaterielController {
         if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
+
         Materiel materiel = new Materiel(
                 request.getParameter("idUser"),
                 request.getParameter("type"),
                 request.getParameter("nbSerie")
         );
         materielService.save(materiel);
-        return "redirect:/";
+
+        return "redirect:/gestionMateriel";
+    }
+
+    @RequestMapping(value = "/editMateriel", method = RequestMethod.GET)
+    public String editMaterielView(HttpServletRequest request, Model model) {
+        if (request.getSession().getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
+
+        model.addAttribute(
+                "materiel",
+                materielService.findMateriel(Integer.parseInt(request.getParameter("id")))
+                );
+        model.addAttribute("users", userService.findAll());
+
+        return "edit_materiel";
+    }
+
+    @RequestMapping(value = "/editMateriel", method = RequestMethod.POST)
+    public String editMateriel(HttpServletRequest request) {
+        if (request.getSession().getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        if (request.getParameter("id") == null){
+            return "redirect:/";
+        }
+
+        Materiel materiel = materielService.findMateriel(Integer.parseInt(request.getParameter("id")));
+        materiel.setNbSerie(request.getParameter("nbSerie"));
+        materiel.setType(request.getParameter("type"));
+        materiel.setIdUser(Integer.parseInt(request.getParameter("idUser")));
+        materielService.save(materiel);
+
+        return "redirect:/gestionMateriel";
     }
 
     @RequestMapping(value = "/deleteMateriel", method = RequestMethod.GET)
@@ -52,7 +92,9 @@ public class MaterielController {
         if (request.getParameter("id") == null){
             return "redirect:/";
         }
+
         materielService.delete(Integer.parseInt(request.getParameter("id")));
-        return "redirect:/";
+
+        return "redirect:/gestionMateriel";
     }
 }

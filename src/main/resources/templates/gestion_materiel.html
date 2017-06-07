@@ -39,7 +39,7 @@
                     <td th:text="${materiel.type}"></td>
                     <td th:text="${materiel.idUser}"></td>
                     <td>
-                        <a href=""><button> Modifier</button></a>&nbsp;
+                        <a th:href="@{/editMateriel(id=${materiel.id})}"><button> Modifier</button></a>&nbsp;
                         <a th:href="@{/deleteMateriel(id=${materiel.id})}"><button class='delete'>&nbsp;</button></a>
                     </td>
                 </tr>
