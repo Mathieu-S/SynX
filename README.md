@@ -17,3 +17,5 @@ terminer,vous devez modifier le fichier application.properties (_il se trouve da
 avec vos identifiants de base de données.
 
 Une fois ces modifications effectuées, vous pouvez compiler le projet avec Maven.
+
+Le compte admin par défaut est admin@synx.com et admin en mot de passe.
